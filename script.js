@@ -2,7 +2,8 @@ const playButton = () => {
     playBtn = document.querySelector(".play");
 
     playBtn.onclick = () => {
-        console.log("test");
+        firstPage = document.querySelector(".first-page");
+        firstPage.style.display = "none";
     }
 }
 
