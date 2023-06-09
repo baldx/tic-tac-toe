@@ -1,0 +1,56 @@
+body {
+    background: var(--bg);
+    margin: 0;
+}
+
+:root {
+    --bg: #DDE6ED;
+    --light: #9DB2BF;
+    --navy: #526D82;
+    --dark-navy: #27374D;
+}
+
+.title {
+    font-size: 10em;
+    justify-self: center;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    color: var(--dark-navy);
+    font-weight: 700;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    color: var(--dark-navy);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.intro button {
+    height: 2em;
+    width: 9em;
+    font-size: 2em;
+    border: 0.2em solid var(--light);
+    background: var(--bg);
+}
+
+.intro button:hover {
+    background: var(--light);
+    border: 0.2em solid var(--dark-navy);
+    transition: 100ms;
+}
+
+.intro button:active {
+    background: var(--bg);
+    transition: 50ms;
+}
