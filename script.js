@@ -1,4 +1,4 @@
-const playButton = () => {
+const playButton = (() => {
     playBtn = document.querySelector(".play");
     board = document.querySelector(".board");
     body = document.querySelector("body");
@@ -10,6 +10,5 @@ const playButton = () => {
         board.style.display = "grid";
         body.style["justify-content"] = "center";
     }
-}
+})();
 
-playButton();
