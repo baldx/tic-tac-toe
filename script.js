@@ -1,3 +1,6 @@
+let gameBoard = [];
+let winner = null;
+
 const playButton = (() => {
     playBtn = document.querySelector(".play");
     board = document.querySelector(".board");
@@ -12,3 +15,13 @@ const playButton = (() => {
     }
 })();
 
+const placeMark = (() => {
+    let square = document.querySelectorAll(".square");
+
+        square.forEach(element => {
+        element.addEventListener("click", () => {
+            element.innerHTML = "X";
+        })
+    })
+    
+})();
