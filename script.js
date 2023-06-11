@@ -2,6 +2,9 @@ let gameBoard = (() => {
     let winner = null;
     let turn = 0;
     let board = [];
+    for (i = 0; i < 9; i++) {
+        board.push('');
+    }
     let winPossibilities = [
         [0, 1, 2],
         [0, 3, 6],
@@ -44,10 +47,20 @@ let gameBoard = (() => {
                 else return;
             })
         })
-    })
-    playerTurn();
-    
+        return {board};
+    })();
 })();
+
+const game = (() => {
+    function checkWinner() {
+        winPossibilities.forEach(item => {
+            if (gameBoard.board[item[0]] === this.player1.mark && gameBoard.board[item[1]] === this.player1.mark && gameBoard.board[item[2]] === this.player1.mark) {
+                console.log("winner")
+            }
+        })
+    }
+})();
+
 
 const playButton = (() => {
     playBtn = document.querySelector(".play");
