@@ -15,13 +15,13 @@ let gameBoard = (() => {
 
         square.forEach(square => {
             square.addEventListener("click", element => {
-                if (player1.turn == true && square.innerHTML == "") {
+                if (player1.turn == true && square.innerHTML == "" && winner == null) {
                     board[element.id] = player1.mark;
                     square.textContent = player1.mark;
                     player1.turn = false;
                     player2.turn = true;
                 }
-                else if (player2.turn == true && square.innerHTML == "") {
+                else if (player2.turn == true && square.innerHTML == "" && winner == null) {
                     board[element.id] = player2.mark;
                     square.textContent = player2.mark;
                     player1.turn = true;
