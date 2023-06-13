@@ -83,3 +83,9 @@ body {
 .board button:hover {
     background: rgb(236, 235, 235);
 }
+
+.text {
+    display: none;
+    font-size: 4em;
+    margin: 1em;
+}
