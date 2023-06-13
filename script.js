@@ -26,13 +26,14 @@ let gameBoard = (() => {
     const playerTurn = (() => {
         let square = document.querySelectorAll(".square");
 
-        square.forEach(square => {
-            square.addEventListener("click", (index) => {
+        square.forEach((square, index) => {
+            square.addEventListener("click", () => {
                 if (player1 == currentPlayer && square.innerHTML == "" && winner == null) {
                     square.textContent = player1.mark;
                     square.style.color = "#27374d"
                     square.style["font-size"] = "5em"
                     currentPlayer = player2;
+                    console.log(index)
                     board.splice(index, 1, player1.mark)
                     console.log(board)
                 }
@@ -52,14 +53,14 @@ let gameBoard = (() => {
 
     function checkWinner() {
         winPossibilities.forEach(item => {
-            if (gameBoard.board[item[0]] === currentPlayer.mark && gameBoard.board[item[1]] === currentPlayer.mark && gameBoard.board[item[2]] === currentPlayer.mark) {
+            if (gameBoard.board[item[0]] === this.currentPlayer.mark && gameBoard.board[item[1]] === this.currentPlayer.mark && gameBoard.board[item[2]] === this.currentPlayer.mark) {
                 console.log("winner");
                 winner = true;
             }
         })
-    }
-    return {
-        checkWinner
+        return {
+            checkWinner
+        }
     }
 })();
 
