@@ -1,7 +1,6 @@
 let gameBoard = (() => {
-    let winner = null;
-    let turn = 0;
     let board = [];
+    let turn = 0;
     for (i = 0; i < 9; i++) {
         board.push('');
     }
@@ -15,51 +14,56 @@ let gameBoard = (() => {
         [3, 4, 5],
         [6, 7, 8]
     ];
-
+    let winner = null;
     const createPlayer = (name, mark, turn) => {
         return {name, mark, turn};
     }
-
     const player1 = createPlayer("player1", "X", true);
     const player2 = createPlayer("player2", "O", false);
+    let currentPlayer = player1;
+
 
     const playerTurn = (() => {
         let square = document.querySelectorAll(".square");
 
         square.forEach(square => {
-            square.addEventListener("click", element => {
-                if (player1.turn == true && square.innerHTML == "" && winner == null) {
-                    board[element.id] = player1.mark;
+            square.addEventListener("click", (index) => {
+                if (player1 == currentPlayer && square.innerHTML == "" && winner == null) {
                     square.textContent = player1.mark;
                     square.style.color = "#27374d"
                     square.style["font-size"] = "5em"
-                    player1.turn = false;
-                    player2.turn = true;
+                    currentPlayer = player2;
+                    board.splice(index, 1, player1.mark)
+                    console.log(board)
                 }
-                else if (player2.turn == true && square.innerHTML == "" && winner == null) {
-                    board[element.id] = player2.mark;
+                else if (player2 == currentPlayer && square.innerHTML == "" && winner == null) {
                     square.textContent = player2.mark;
                     square.style.color = "#526D82"
                     square.style["font-size"] = "5em"
-                    player1.turn = true;
-                    player2.turn = false;
+                    currentPlayer = player1;
                 }
                 else return;
             })
         })
-        return {board};
     })();
-})();
+    console.log(board)
+    return {board, player1, player2};
+    
 
-const game = (() => {
     function checkWinner() {
         winPossibilities.forEach(item => {
-            if (gameBoard.board[item[0]] === this.player1.mark && gameBoard.board[item[1]] === this.player1.mark && gameBoard.board[item[2]] === this.player1.mark) {
-                console.log("winner")
+            if (gameBoard.board[item[0]] === currentPlayer.mark && gameBoard.board[item[1]] === currentPlayer.mark && gameBoard.board[item[2]] === currentPlayer.mark) {
+                console.log("winner");
+                winner = true;
             }
         })
     }
+    return {
+        checkWinner
+    }
 })();
+
+
 
 
 const playButton = (() => {
