@@ -1,6 +1,6 @@
 let gameBoard = (() => {
     let board = [];
-    let turn = 0;
+    let winner = null;
     for (i = 0; i < 9; i++) {
         board.push('');
     }
@@ -14,7 +14,6 @@ let gameBoard = (() => {
         [3, 4, 5],
         [6, 7, 8]
     ];
-    let winner = null;
     const createPlayer = (name, mark, turn) => {
         return {name, mark, turn};
     }
@@ -33,7 +32,7 @@ let gameBoard = (() => {
                     square.style.color = "#27374d"
                     square.style["font-size"] = "5em"
                     currentPlayer = player2;
-                    console.log(index)
+                    playButton.text.innerHTML = "test"
                     board.splice(index, 1, player1.mark)
                     console.log(board)
                 }
@@ -42,25 +41,27 @@ let gameBoard = (() => {
                     square.style.color = "#526D82"
                     square.style["font-size"] = "5em"
                     currentPlayer = player1;
+                    board.splice(index, 1, player2.mark)
+                    console.log(board)
                 }
                 else return;
             })
         })
     })();
-    console.log(board)
-    return {board, player1, player2};
     
 
     function checkWinner() {
         winPossibilities.forEach(item => {
-            if (gameBoard.board[item[0]] === this.currentPlayer.mark && gameBoard.board[item[1]] === this.currentPlayer.mark && gameBoard.board[item[2]] === this.currentPlayer.mark) {
+            if (board[item[0]] === this.currentPlayer.mark && board[item[1]] === this.currentPlayer.mark && board[item[2]] === this.currentPlayer.mark) {
                 console.log("winner");
                 winner = true;
             }
         })
-        return {
-            checkWinner
-        }
+    }
+
+    return {
+        playerTurn,
+        checkWinner,
     }
 })();
 
@@ -71,6 +72,7 @@ const playButton = (() => {
     playBtn = document.querySelector(".play");
     board = document.querySelector(".board");
     body = document.querySelector("body");
+    text = document.querySelector(".text")
 
     playBtn.onclick = () => {
         firstPage = document.querySelector(".first-page");
@@ -78,5 +80,7 @@ const playButton = (() => {
 
         board.style.display = "grid";
         body.style["justify-content"] = "center";
+
+        text.style.display = "block";
     }
 })();
