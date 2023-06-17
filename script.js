@@ -11,14 +11,15 @@ let gameBoard = (() => {
     for (let i = 0; i < 9; i++) {
         board.push('');
     }
+
     let turns = 0;
 
     const player1 = createPlayer("player1", "X");
     const player2 = createPlayer("player2", "O");
     let currentPlayer = player1;
 
-    let text = document.querySelector(".text")
-
+    let text = document.querySelector(".text");
+    let restartBtn = document.querySelector(".restart");
 
     const playerTurn = (() => {
         let square = document.querySelectorAll(".square");
@@ -27,30 +28,27 @@ let gameBoard = (() => {
             square.addEventListener("click", () => {
                 if (player1 == currentPlayer && square.innerHTML == "" && winner == null) {
                     square.textContent = player1.mark;
-                    square.style.color = "#27374d"
-                    square.style["font-size"] = "5em"
+                    square.classList.add("playerOneMark");
                     currentPlayer = player2;
                     text.style.display = "block";
                     text.textContent = "Its player O's turn"
                     board.splice(index, 1, player1.mark);
                     turns++;
-                    console.log(turns)
                     checkWinner();
                 }
                 else if (player2 == currentPlayer && square.innerHTML == "" && winner == null) {
                     square.textContent = player2.mark;
-                    square.style.color = "#526D82"
-                    square.style["font-size"] = "5em"
+                    square.classList.add("playerTwoMark");
                     currentPlayer = player1;
                     text.style.display = "block";
                     text.textContent = "Its player X's turn"
                     board.splice(index, 1, player2.mark)
                     turns++;
-                    console.log(turns)
                     checkWinner();
                 }
                 if (turns == 9 && winner == null) {
                     text.textContent = `Its a Tie!`
+                    restartBtn.style.display = "block";
                 }
             })
         })
@@ -78,17 +76,25 @@ const checkWinner = () => {
         [6, 7, 8]
     ];
     let text = document.querySelector(".text")
+    let restartBtn = document.querySelector(".restart");
 
     winPossibilities.forEach(index => {
         if (gameBoard.board[index[0]] == gameBoard.player1.mark && gameBoard.board[index[1]] == gameBoard.player1.mark && gameBoard.board[index[2]] == gameBoard.player1.mark) {
             text.textContent = `${gameBoard.player1.mark} won the game!`
             gameBoard.winner = true;
+            restartBtn.style.display = "block";
         }
         else if (gameBoard.board[index[0]] == gameBoard.player2.mark && gameBoard.board[index[1]] == gameBoard.player2.mark && gameBoard.board[index[2]] == gameBoard.player2.mark) {
             text.textContent = `${gameBoard.player2.mark} won the game!`
             gameBoard.winner = true;
+            restartBtn.style.display = "block";
         }
+        return gameBoard.winner;
     })
+
+    if (gameBoard.winner == true) {
+        console.log(gameBoard.winner + "dadas")
+    }
 };
 
 const playButtonClick = (() => {
@@ -96,7 +102,6 @@ const playButtonClick = (() => {
     let board = document.querySelector(".board");
     let body = document.querySelector("body");
     let text = document.querySelector(".text")
-
 
     playBtn.onclick = () => {
         firstPage = document.querySelector(".first-page");
@@ -107,6 +112,5 @@ const playButtonClick = (() => {
 
         text.textContent = "Player X goes first";
         text.style.display = "block";
-
     }
 })();
