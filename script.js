@@ -11,6 +11,7 @@ let gameBoard = (() => {
     for (let i = 0; i < 9; i++) {
         board.push('');
     }
+    let turns = 0;
 
     const player1 = createPlayer("player1", "X");
     const player2 = createPlayer("player2", "O");
@@ -31,8 +32,9 @@ let gameBoard = (() => {
                     currentPlayer = player2;
                     text.style.display = "block";
                     text.textContent = "Its player O's turn"
-                    board.splice(index, 1, player1.mark)
-                    console.log(board)
+                    board.splice(index, 1, player1.mark);
+                    turns++;
+                    console.log(turns)
                     checkWinner();
                 }
                 else if (player2 == currentPlayer && square.innerHTML == "" && winner == null) {
@@ -43,9 +45,13 @@ let gameBoard = (() => {
                     text.style.display = "block";
                     text.textContent = "Its player X's turn"
                     board.splice(index, 1, player2.mark)
-                    console.log(board)
+                    turns++;
+                    console.log(turns)
+                    checkWinner();
                 }
-                else return;
+                if (turns == 9 && winner == null) {
+                    text.textContent = `Its a Tie!`
+                }
             })
         })
     })();
@@ -71,47 +77,19 @@ const checkWinner = () => {
         [3, 4, 5],
         [6, 7, 8]
     ];
-
-
-    winPossibilities.forEach(index => {
-        if (gameBoard.board[index[0]] == gameBoard.currentPlayer.mark && gameBoard.board[index[1]] == gameBoard.currentPlayer.mark && gameBoard.board[index[2]] == gameBoard.currentPlayer.mark) {
-            console.log("winner")
-        }
-
-    })
-};
-
-const game = (() => {
-
-    "use strict"
-
-    let winPossibilities = [
-        [0, 1, 2],
-        [0, 3, 6],
-        [0, 4, 8],
-        [1, 4, 7],
-        [2, 5, 8],
-        [2, 4, 6],
-        [3, 4, 5],
-        [6, 7, 8]
-    ];
-
     let text = document.querySelector(".text")
 
-
-   
-
-    function checkDraw() {
-        if (gameBoard.winner === false) {
-            text.textContent = `It's a Draw!`
-            gameBoard.winner = null;
+    winPossibilities.forEach(index => {
+        if (gameBoard.board[index[0]] == gameBoard.player1.mark && gameBoard.board[index[1]] == gameBoard.player1.mark && gameBoard.board[index[2]] == gameBoard.player1.mark) {
+            text.textContent = `${gameBoard.player1.mark} won the game!`
+            gameBoard.winner = true;
         }
-    }
-
-    checkDraw();
-})();
-
-
+        else if (gameBoard.board[index[0]] == gameBoard.player2.mark && gameBoard.board[index[1]] == gameBoard.player2.mark && gameBoard.board[index[2]] == gameBoard.player2.mark) {
+            text.textContent = `${gameBoard.player2.mark} won the game!`
+            gameBoard.winner = true;
+        }
+    })
+};
 
 const playButtonClick = (() => {
     let playBtn = document.querySelector(".play");
