@@ -72,6 +72,7 @@ body {
     width: 30vw;
     background: var(--dark-navy);
     gap: 0.2em;
+    margin-top: 1em;
 }
 
 .board button {
@@ -87,5 +88,38 @@ body {
 .text {
     display: none;
     font-size: 4em;
-    margin: 1em;
+}
+
+.restart {
+    display: none; 
+    height: 3em;
+    width: 10em;
+    font-size: 2em;
+    font-weight: 700;
+    border: 0.2em solid var(--light);
+    background: var(--bg);
+    margin-top: 1em;
+}
+
+.restart:hover {
+    background: var(--light);
+    border: 0.2em solid var(--dark-navy);
+    transition: 150ms;
+}
+
+.restart:active {
+    background: var(--bg);
+    transition: 50ms;
+}
+
+/*PLAYER MARKS*/
+
+.playerOneMark {
+    color: var(--dark-navy);
+    font-size: 5em;
+}
+
+.playerTwoMark {
+    color: var(--navy);
+    font-size: 5em;
 }
