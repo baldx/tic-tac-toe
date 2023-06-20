@@ -66,8 +66,8 @@ body {
 
 .board {
     display: none;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     height: 40vh;
     width: 30vw;
     background: var(--dark-navy);
