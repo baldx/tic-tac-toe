@@ -117,8 +117,7 @@ const restartBtn = (() => {
     let restartBtn = document.querySelector(".restart");
 
     restartBtn.addEventListener("click", () => {
-        console.log("restart game!")
+        location.reload();
     })
-    
    
 })(); 
