@@ -77,21 +77,17 @@ const checkWinner = () => {
     ];
     let text = document.querySelector(".text")
     let restartBtn = document.querySelector(".restart");
-    let board = document.querySelector(".board");
-
 
     winPossibilities.forEach(index => {
         if (gameBoard.board[index[0]] == gameBoard.player1.mark && gameBoard.board[index[1]] == gameBoard.player1.mark && gameBoard.board[index[2]] == gameBoard.player1.mark) {
             text.textContent = `${gameBoard.player1.mark} won the game!`
             gameBoard.winner = true;
             restartBtn.style.display = "block";
-            board.style.display = "none"
         }
         else if (gameBoard.board[index[0]] == gameBoard.player2.mark && gameBoard.board[index[1]] == gameBoard.player2.mark && gameBoard.board[index[2]] == gameBoard.player2.mark) {
             text.textContent = `${gameBoard.player2.mark} won the game!`
             gameBoard.winner = true;
             restartBtn.style.display = "block";
-            board.style.display = "none"
         }
         return gameBoard.winner;
     })
@@ -119,35 +115,10 @@ const restartBtn = (() => {
     "use strict"
 
     let restartBtn = document.querySelector(".restart");
-    let boardGrid = document.querySelector(".board");
-    let body = document.querySelector("body");
-    let square = document.querySelectorAll(".square");
-    let text = document.querySelector(".text")
 
-    for (let i = 0; i < 999; i++) {
-        restartLogic();
-    }
-
-
-    function restartLogic() {
-        restartBtn.addEventListener("click", () => {
-            boardGrid.style.display = "grid";
-            body.style["justify-content"] = "center";
-        
-            restartBtn.style.display = "none"
-            text.textContent = ""
-        
-            gameBoard.board = [];
-            for (let i = 0; i < 9; i++) {
-                gameBoard.board.push('');
-            }
-        
-            square.forEach(square => {
-                square.textContent = ""
-            })
-                
-        })
-    }
+    restartBtn.addEventListener("click", () => {
+        console.log("restart game!")
+    })
     
    
-})();
+})(); 
